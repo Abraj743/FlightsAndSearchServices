@@ -12,7 +12,9 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull:false
+        // what ever constraints u apply in migrations are applied to the database directly
+        allowNull:false,
+        unique:true
       },
       createdAt: {
         allowNull: false,

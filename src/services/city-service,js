@@ -43,3 +43,10 @@ class CityService {
 }
 
 module.exports = CityService;
+
+
+/*
+ here there is one problem everytime we create a new instance of city service
+ new instance of repository is also get created,how to avoid this
+ because repository has only some behaviours,  not any properties then why to create new instance every time
+*/

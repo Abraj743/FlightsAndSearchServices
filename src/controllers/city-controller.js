@@ -85,6 +85,6 @@ const get = async (req,res) => {
     }
 }
 
-module.export = {
+module.exports = {
       create,destroy,get,update
 }

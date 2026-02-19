@@ -48,6 +48,14 @@ class CityRepository {
         where: {
           id: cityId,
         },
+        //returning:true,
+        //plain:true  // this returning and plain both are used for returning the row else it will return data:[1],this only works in postgres and not in mysql,for mysql u have to get the data and update and then save like this
+        /*
+        const city = await City.findByPk(cityId);
+        city.name=data.name;
+        await city.save();
+        return city;
+        */
       });
 
       return city;

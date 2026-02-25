@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     // query interface is the interface using which sequelize or sequelize-cli connects with our database
-    await queryInterface.createTable('cities', {
+    await queryInterface.createTable('Cities', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -27,6 +27,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('cities');
+    await queryInterface.dropTable('Cities');
   }
 };

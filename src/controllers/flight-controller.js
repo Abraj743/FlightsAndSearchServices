@@ -1,12 +1,22 @@
 const {FlightService}= require("../services/index");
+const {SuccessCodes,ServerErrorCodes} = require('../utils/error-codes')
 
 const flightService = new FlightService();
 
 
 const createFlight = async(req,res) =>{
     try{
-          const flight = await flightService.createFlight(req.body);
-          return res.status(201).json({
+        let flightRequestData={
+            flightNumber : req.body.flightNumber,
+            airplaneId :req.body.airplaneId,
+            arrivalAirportId:req.body.arrivalAirportId,
+            departureAirportId:req.body.departureAirportId,
+            arrivalTime:req.body.arrivalTime,
+            depatureTime:req.body.depatureTime,
+            price:req.body.price
+          }   
+          const flight = await flightService.createFlight(flightRequestData);
+          return res.status(SuccessCodes.CREATED).json({
             data:flight,
             error:{},
             success:true,
@@ -14,7 +24,7 @@ const createFlight = async(req,res) =>{
           })
     }catch(error){
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data:{},
             success:false,
             message:"Not able to create a flight",
@@ -26,8 +36,9 @@ const createFlight = async(req,res) =>{
 
     const getAllFlights = async(req,res) =>{
     try{
-          const flights = await flightService.getAllFlightData(req.query);
-          return res.status(200).json({
+                
+         const flights = await flightService.getAllFlightData(req.query);
+          return res.status(SuccessCodes.OK).json({
             data:flights,
             error:{},
             success:true,
@@ -35,7 +46,7 @@ const createFlight = async(req,res) =>{
           })
     }catch(error){
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data:{},
             success:false,
             message:"Not able to get all flights",
